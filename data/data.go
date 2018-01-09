@@ -1,39 +1,41 @@
 package data
 
+type PulicationObj struct {
+	ID          string `json:"id"`
+	PublisherID string `json:"publisherId"`
+	AddTime     int64  `json:"addTime"`
+	Content     struct {
+		Type               string        `json:"type"`
+		EmbedVideoContents []interface{} `json:"embedVideoContents"`
+		Preview            struct {
+			Title   string        `json:"title"`
+			Snippet string        `json:"snippet"`
+			Tags    []interface{} `json:"tags"`
+		} `json:"preview"`
+		ModTime int64 `json:"modTime"`
+	} `json:"content"`
+	PrivateData struct {
+		HasChanges    bool `json:"hasChanges"`
+		HasPublished  bool `json:"hasPublished"`
+		SnippetFrozen bool `json:"snippetFrozen"`
+		Statistics    struct {
+			FeedShows      int `json:"feedShows"`
+			Shows          int `json:"shows"`
+			Likes          int `json:"likes"`
+			Dislikes       int `json:"dislikes"`
+			Shares         int `json:"shares"`
+			Views          int `json:"views"`
+			ViewsTillEnd   int `json:"viewsTillEnd"`
+			SumViewTimeSec int `json:"sumViewTimeSec"`
+		} `json:"statistics"`
+	} `json:"privateData"`
+	ItemID          string `json:"itemId"`
+	PublisherItemID string `json:"publisherItemId"`
+}
+
 type PublicationsInfo struct {
-	Publications []struct {
-		ID          string `json:"id"`
-		PublisherID string `json:"publisherId"`
-		AddTime     int64  `json:"addTime"`
-		Content     struct {
-			Type               string        `json:"type"`
-			EmbedVideoContents []interface{} `json:"embedVideoContents"`
-			Preview            struct {
-				Title   string        `json:"title"`
-				Snippet string        `json:"snippet"`
-				Tags    []interface{} `json:"tags"`
-			} `json:"preview"`
-			ModTime int64 `json:"modTime"`
-		} `json:"content"`
-		PrivateData struct {
-			HasChanges    bool `json:"hasChanges"`
-			HasPublished  bool `json:"hasPublished"`
-			SnippetFrozen bool `json:"snippetFrozen"`
-			Statistics    struct {
-				FeedShows      int `json:"feedShows"`
-				Shows          int `json:"shows"`
-				Likes          int `json:"likes"`
-				Dislikes       int `json:"dislikes"`
-				Shares         int `json:"shares"`
-				Views          int `json:"views"`
-				ViewsTillEnd   int `json:"viewsTillEnd"`
-				SumViewTimeSec int `json:"sumViewTimeSec"`
-			} `json:"statistics"`
-		} `json:"privateData"`
-		ItemID          string `json:"itemId"`
-		PublisherItemID string `json:"publisherItemId"`
-	} `json:"publications"`
-	Images struct {
+	Publications []PulicationObj `json:"publications"`
+	Images       struct {
 		Five9352A2Fe3Cda85Cf4156F7E struct {
 			ID        string `json:"id"`
 			Namespace string `json:"namespace"`
